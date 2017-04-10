@@ -1,11 +1,11 @@
-var app = angular.module('mainCtrl', ['authService','duScroll'])
+var app = angular.module('mainCtrl', ['authService','ngRoute'])
 	
 	.controller('homeCtrl', function(){
 		var vm = this;
 		vm.message = 'HELLO';
 	})
 
-	.controller('mainController',['$scope','Auth','$location','$rootScope','$anchorScroll',
+	.controller('mainController',['$scope','Auth','$location','$rootScope',
 		function($rootScope,Auth,$location,$scope, $anchorScroll,$document) {
 		var vm = this;
 		//get info if a person is logged in
@@ -16,15 +16,7 @@ var app = angular.module('mainCtrl', ['authService','duScroll'])
 			vm.loggedIn = Auth.isLoggedIn();
 		});
 		
-		$scope.toTheTop = function() {
-		  $document.scrollTopAnimated(0, 5000).then(function() {
-			console && console.log('You just scrolled to the top!');
-		  });
-		}
-		var section3 = angular.element(document.getElementById('section-3'));
-		$scope.toSection3 = function() {
-		  $document.scrollToElementAnimated(section3);
-		}
+		
 		//function to handle login form
 		vm.doLogin = function () {
 			//processing Icon
@@ -39,7 +31,7 @@ var app = angular.module('mainCtrl', ['authService','duScroll'])
 
 				if (data.success) {
 					//if a user successfully logs in, redirect to users page
-					$location.path('/users');
+					$location.path('/admin');
 					//this.user = 'name:unchanged';
 					Auth.getUser()
 						.then(function(data) {

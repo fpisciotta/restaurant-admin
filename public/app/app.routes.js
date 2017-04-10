@@ -5,9 +5,9 @@ angular.module('app.routes', ['ngRoute'])
 
         // route for the home page
         .when('/', {
-            templateUrl : '/app/views/pages/home.html',
-            controller : 'homeCtrl',
-            controllerAs : 'home'
+            templateUrl : '/app/views/pages/login.html',
+            controller : 'mainController',
+            controllerAs : 'login'
         })
 		
 		// route for the home page
@@ -51,6 +51,13 @@ angular.module('app.routes', ['ngRoute'])
             templateUrl : '/app/views/pages/login.html',
         	controller   : 'mainController',
         	controllerAs   : 'login'
+        })
+		
+		//login page
+        .when('/admin', {
+            templateUrl : '/app/views/pages/admin.html',
+        	controller   : 'mainController',
+        	controllerAs   : 'admin'
         })
 
         //show all users
