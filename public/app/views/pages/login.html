@@ -1,0 +1,47 @@
+
+<div class="login">
+<div class = "row com-sm6 col-sm-offset-3">
+<div class="container" class="section-padding">
+    <div class="row">
+		<div class="span12">
+			<form class="form-horizontal" ng-submit = "login.doLogin()">
+			  <fieldset>
+			    <div id="legend">
+			      <legend class="">Login</legend>
+			    </div>
+			    <div class="control-group">
+			      <!-- Username -->
+			      <label class="control-label"  for="username">Username</label>
+			      <div class="controls">
+			        <input type="text" id="username" name="username" placeholder="" class="input-xlarge" ng-model="login.loginData.username">
+			      </div>
+			    </div>
+			    <div class="control-group">
+			      <!-- Password-->
+			      <label class="control-label" for="password">Password</label>
+			      <div class="controls">
+			        <input type="password" id="password" name="password" placeholder="" class="input-xlarge" ng-model ="login.loginData.password">
+			      </div>
+			    </div>
+			    <div class="control-group">
+			      <!-- Button -->
+			      <div class="controls">
+			        <button class="btn btn-success">
+					<span ng-if = "!login.processing">Login</span>
+					<span ng-if = "login.processing" class ="spinner">
+					<span class = "glyphicon glypicon-repeat">
+					</button>
+			      </div>
+			    </div>
+			  </fieldset>
+			</form>
+		</div>
+		<!-- ERROR ICON -->
+	<div class = "alert alert-danger" ng-if="login.error">
+		{{login.error}}
+	</div>
+	</div>
+</div>
+</div>
+</div>
+  
