@@ -15,6 +15,7 @@ module.exports = function(app,express){
 //get an instance of the express router
 var apiRouter = express.Router();
 
+
 //===============================  Token Middleware  =========================
 // For /users request
 // Checks for token for /api routes
