@@ -1,9 +1,5 @@
 var app = angular.module('mainCtrl', ['authService','ngRoute'])
-	
-	.controller('homeCtrl', function(){
-		var vm = this;
-		vm.message = 'HELLO';
-	})
+		
 
 	.controller('mainController',['$scope','Auth','$location','$rootScope',
 		function($rootScope,Auth,$location,$scope, $anchorScroll,$document) {
@@ -15,7 +11,26 @@ var app = angular.module('mainCtrl', ['authService','ngRoute'])
 		$rootScope.$on('$routeChangeStart', function () {
 			vm.loggedIn = Auth.isLoggedIn();
 		});
-		
+
+		$rootScope.$on('$routeChangeStart', function (e, next, current) {               
+         if (next.access != undefined && !next.access.allowAnonymous && !Auth.isLoggedIn()) {
+                    $location.path("/login");                   
+             }
+         });
+            
+           
+		 $rootScope.$on("$locationChangeStart", function (event, next, current) {
+		  for (var i in window.routes) {
+		    if (next.indexOf(i) != -1) {
+		     if (!window.routes[i].access.allowAnonymous && !Auth.isLoggedIn()) {
+		           toaster.pop("error", 'You are not logged in!', '');
+		              $location.path("/login");                                                 
+		                        }
+		                    }
+		                }
+		});
+        
+				
 		
 		//function to handle login form
 		vm.doLogin = function () {

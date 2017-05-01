@@ -22,10 +22,10 @@ var apiRouter = express.Router();
 apiRouter.use("/",function(req,res,next){
 	//check header or url parameters or post parameters for token
 	var token = req.body.token || req.param('token') ||req.headers['x-access-token'];
-
+	console.log("Token"+JSON.stringify(token));
 	//decode token
 	if(token){
-		//console.log("Token"+JSON.stringify(token));
+		
 		//verifies secret and checks exp
 		jwt.verify(token,superSecret,function(err,decoded){
 			if(err){
@@ -40,6 +40,7 @@ apiRouter.use("/",function(req,res,next){
 			}
 		});
 	}else{
+		console.log("No token provided");
 		// if there is no token
 		//return an HTTP response of 403 (access forbidden) and an error message
 		return res.status(403).send({
