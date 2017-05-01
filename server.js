@@ -10,8 +10,9 @@ var mongoose = require('mongoose') //for working with mongoDB
 var config = require('./config'); //get config file
 var path = require('path');
 var jwt = require('jsonwebtoken');
-var User = require(__dirname + '/server//models/user.js');
 
+var schema = require(__dirname + '/server//models/schema.js');
+var User = schema.User;
 app.use(morgan('dev')); //HTTP logger
 
 //==================================--APP--====================================
@@ -37,6 +38,10 @@ db.once('open', function (callback) {
   console.log('MONGO: successfully connected to db');
 });
 
+process.on('uncaughtException', function (err) {
+  console.log("Exception caught",err);
+  //response.status(500).send('Something broke!')
+})
 // set static files location
 // used for requests that frontend will make
 app.use(express.static(__dirname + '/public'));

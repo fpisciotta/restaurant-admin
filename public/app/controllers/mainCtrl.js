@@ -49,7 +49,7 @@ var app = angular.module('mainCtrl', ['authService','ngRoute'])
 			vm.user = {};
 			$location.path('/login');
 		}
-	}]).value('duScrollOffset', 30);;
+	}]);
 
 
 

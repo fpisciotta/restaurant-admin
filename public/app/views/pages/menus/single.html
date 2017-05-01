@@ -1,0 +1,79 @@
+<div id="page-wrapper">
+
+	<div class="row">
+	                <div class="col-lg-12">
+	                    <h1 ng-if = "menuCtrl.type == 'create' ">Crear menu</h1>
+						<h1 ng-if = "menuCtrl.type == 'edit'">Editar menu</h1>
+	                </div>
+	                <!-- /.col-lg-12 -->
+	</div>
+	<div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Agregar menu
+                        </div>
+                        <div class="panel-body" >
+                        	<div class="row">
+                                <div class="col-lg-6">
+                                    <form name="menuForm" role="form"  ng-submit="menuCtrl.saveMenu(menuForm.$valid)" novalidate>
+                                        <div class="form-group" ng-class="{true: 'has-error'}[menuCtrl.submitted && menuForm.name.$error.required]">
+                                            <label>Nombre</label>
+                                            <input name="name" class="form-control" ng-model ="menuCtrl.data.name" placeholder="Ingresar nombre del plato" required>
+                                            <p class="help-block" ng-show="menuForm.name.$error.required && menuCtrl.submitted" class="help-block">Ingrese el nombre.</p>
+                                        </div>
+                                        <div class="form-group"  ng-class="{true: 'has-error'}[menuCtrl.submitted && menuForm.description.$error.required]">
+                                            <label>Descripción</label>
+                                            <textarea name="description" class="form-control" rows="3" ng-model = "menuCtrl.data.description" placeholder="Ingrese una breve descripción del plato" required></textarea>
+                                            <p class="help-block" ng-show="menuForm.description.$error.required && menuCtrl.submitted" class="help-block">Ingrese una descripción.</p>
+                                        </div>
+                                        <div class="form-group"  ng-class="{true: 'has-error'}[menuCtrl.submitted && menuForm.price.$error.required]">
+                                            <label>Precio</label>
+                                            <input name="price" class="form-control" ng-model = "menuCtrl.data.price" placeholder="Ingresar el precio del plato" required>
+                                            <p class="help-block" ng-show="menuForm.price.$error.required && menuCtrl.submitted" class="help-block">Ingrese el precio.</p>                                            
+                                        </div>
+                                        <div class="form-group" ng-class="{true: 'has-error'}[menuCtrl.submitted && menuCtrl.data.dayOfTheWeek.length == 0]">
+                                            <label>Días de la semana</label>
+                                            <label class="checkbox-inline" ng-repeat="day in menuCtrl.dayOfTheWeek">
+                                              <input
+                                                type="checkbox"
+                                                name="selectedDays"
+                                                value="{{day}}"
+                                                ng-checked="menuCtrl.data.dayOfTheWeek.indexOf(day) > -1"
+                                                ng-click="menuCtrl.toggleSelection(day)"
+                                              > {{day}}
+                                            </label>  
+                                            <p class="help-block" ng-show="menuCtrl.data.dayOfTheWeek.length == 0 && menuCtrl.submitted" class="help-block">Seleccione al menos un día de la semana.</p>                                            
+                                        </div>
+                                        <div class="form-group" ng-class="{true: 'has-error'}[menuCtrl.submitted && menuForm.typeMenu.$error.required]">
+                                            <label>Tipo de Menú</label>
+                                            <select name="typeMenu" ng-model="menuCtrl.data.type" 
+                                                ng-options="item._id as item.name for item in menuCtrl.typeMenus" required>
+                                            </select>
+                                            <p class="help-block" ng-show="menuForm.typeMenu.$error.required && menuCtrl.submitted" class="help-block">Seleccione un tipo de plato</p>
+                                        </div>                                        
+                                        <div class="form-group">
+                                            <label>Subir una imagen</label>
+                                            <input type="file" ng-model = "menuCtrl.data.image">
+                                        </div>
+                                        
+                                        <button type="submit" class="btn btn-primary" ng-if = "menuCtrl.type == 'create' " >
+                                        	Guardar
+                                        </button>
+                                        <button type="submit" class="btn btn-primary" ng-if = "menuCtrl.type == 'edit' ">
+                                        	Editar
+                                        </button>
+                                        <a href="/menus" class="btn btn-danger">Cancelar</a>
+                                    </form>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+
+    </div>
+    
+   
+	
+</div>
+</div>

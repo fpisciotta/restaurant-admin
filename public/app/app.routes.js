@@ -3,49 +3,72 @@ angular.module('app.routes', ['ngRoute'])
 .config(function($routeProvider, $locationProvider) {
     $routeProvider
 
-        // route for the home page
-        .when('/', {
-            templateUrl : '/app/views/pages/login.html',
-            controller : 'mainController',
-            controllerAs : 'login'
+        
+		
+		//show all menus
+        .when('/menus',{
+            templateUrl: 'app/views/pages/menus/all.html',
+            controller: 'menuController',
+            controllerAs: 'menuCtrl'
         })
 		
-		// route for the home page
-        .when('/about', {
-            templateUrl : '/app/views/pages/home.html',
-            controller : 'homeCtrl',
-            controllerAs : 'home'
+		//form to create a new user
+        // same view as edit page
+        .when('/menus/create',  {
+            templateUrl: 'app/views/pages/menus/single.html',
+            controller: 'menuCreateController',
+            controllerAs: 'menuCtrl'
+        })
+        //  page to edit a user
+        .when('/menus/:menu_id', {
+            templateUrl: 'app/views/pages/menus/single.html',
+            controller: 'menuEditController',
+            controllerAs: 'menuCtrl'
         })
 		
-		.when('/banner', {
-            templateUrl : '/app/views/pages/home.html',
-            controller : 'homeCtrl',
-            controllerAs : 'home'
+        //show all type menus
+        .when('/typemenus',{
+            templateUrl: 'app/views/pages/type_menus/all.html',
+            controller: 'typeMenuController',
+            controllerAs: 'typeMenuCtrl'
+        })
+        
+        //form to create a new user
+        // same view as edit page
+        .when('/typemenus/create',  {
+            templateUrl: 'app/views/pages/type_menus/single.html',
+            controller: 'typeMenuCreateController',
+            controllerAs: 'typeMenuCtrl'
+        })
+        //  page to edit a user
+        .when('/typemenus/:type_menu_id', {
+            templateUrl: 'app/views/pages/type_menus/single.html',
+            controller: 'typeMenuEditController',
+            controllerAs: 'typeMenuCtrl'
+        })
+
+
+        //show all type menus
+        .when('/caja',{
+            templateUrl: 'app/views/pages/caja/single.html',
+            controller: 'cajaCreateController',
+            controllerAs: 'cajaCtrl'
+        })
+        
+        //form to create a new user
+        // same view as edit page
+        .when('/caja/all',  {
+            templateUrl: 'app/views/pages/caja/all.html',
+            controller: 'cajaController',
+            controllerAs: 'cajaCtrl'
+        })
+        //  page to edit a user
+        .when('/caja/:caja_id', {
+            templateUrl: 'app/views/pages/caja/single.html',
+            controller: 'cajaEditController',
+            controllerAs: 'cajaCtrl'
         })
 		
-		.when('/menu-list', {
-            templateUrl : '/app/views/pages/home.html',
-            controller : 'homeCtrl',
-            controllerAs : 'home'
-        })
-		
-		.when('/event', {
-            templateUrl : '/app/views/pages/home.html',
-            controller : 'homeCtrl',
-            controllerAs : 'home'
-        })
-		
-		.when('/delivery', {
-            templateUrl : '/app/views/pages/home.html',
-            controller : 'homeCtrl',
-            controllerAs : 'home'
-        })
-		
-		.when('/contacto', {
-            templateUrl : '/app/views/pages/home.html',
-            controller : 'homeCtrl',
-            controllerAs : 'home'
-        })
         //login page
         .when('/login', {
             templateUrl : '/app/views/pages/login.html',
@@ -57,7 +80,7 @@ angular.module('app.routes', ['ngRoute'])
         .when('/admin', {
             templateUrl : '/app/views/pages/admin.html',
         	controller   : 'mainController',
-        	controllerAs   : 'admin'
+        	controllerAs   : 'mainCtrl'
         })
 
         //show all users

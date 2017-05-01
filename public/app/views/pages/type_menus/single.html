@@ -1,0 +1,49 @@
+<div id="page-wrapper">
+
+	<div class="row">
+	                <div class="col-lg-12">
+	                    <h1 ng-if = "typeMenuCtrl.type == 'create' ">Crear tipo de menu</h1>
+						<h1 ng-if = "typeMenuCtrl.type == 'edit'">Editar tipo de menu</h1>
+	                </div>
+	                <!-- /.col-lg-12 -->
+	</div>
+	<div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Agregar tipo de menu
+                        </div>
+                        <div class="panel-body" >
+                        	<div class="row">
+                                <div class="col-lg-6">
+                                    <form name="menuForm" role="form"  ng-submit="typeMenuCtrl.saveMenu(menuForm.$valid)" novalidate>
+                                        <div class="form-group" ng-class="{true: 'has-error'}[typeMenuCtrl.submitted && menuForm.name.$error.required]">
+                                            <label>Nombre</label>
+                                            <input name="name" class="form-control" ng-model ="typeMenuCtrl.data.name" placeholder="Ingresar nombre del plato" required>
+                                            <p class="help-block" ng-show="menuForm.name.$error.required && typeMenuCtrl.submitted" class="help-block">Ingrese el nombre.</p>
+                                        </div>
+                                        <div class="form-group"  ng-class="{true: 'has-error'}[typeMenuCtrl.submitted && menuForm.description.$error.required]">
+                                            <label>Descripción</label>
+                                            <textarea name="description" class="form-control" rows="3" ng-model = "typeMenuCtrl.data.description" placeholder="Ingrese una breve descripción del plato" required></textarea>
+                                            <p class="help-block" ng-show="menuForm.description.$error.required && typeMenuCtrl.submitted" class="help-block">Ingrese una descripción.</p>
+                                        </div>                                       
+                                        <button type="submit" class="btn btn-primary" ng-if = "typeMenuCtrl.type == 'create' " >
+                                        	Guardar
+                                        </button>
+                                        <button type="submit" class="btn btn-primary" ng-if = "typeMenuCtrl.type == 'edit' ">
+                                        	Editar
+                                        </button>
+                                        <a href="/typemenus" class="btn btn-danger">Cancelar</a>
+                                    </form>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+
+    </div>
+    
+   
+	
+</div>
+</div>

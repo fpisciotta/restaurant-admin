@@ -44,4 +44,13 @@ $(function() {
             break;
         }
     }
+
+    $(document).ready(function() {
+    $('#caja-menus').DataTable( {
+        "scrollY": 200,
+        "scrollX": false
+    } );
+} );
 });
+
+
